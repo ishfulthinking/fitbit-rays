@@ -1,0 +1,22 @@
+{
+  "fitbit": {
+    "appUUID": "80531c9a-7da0-4e71-85f7-9b0aeb1a9cd2",
+    "appType": "clockface",
+    "appDisplayName": "Rays",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [
+      "access_activity",
+      "access_user_profile",
+      "access_heart_rate"
+    ],
+    "buildTargets": [
+      "higgs"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Rays"
+      }
+    }
+  }
+}
