@@ -91,19 +91,24 @@ export function calculateDistance(distance, units)
 }
 
 // Return the x or y coordinate for the goal bar based on its final location ('scale')
-export function getGoalBar(scale, goalProgress, goalEnd)
+export function getGoalBar(startPoint, width, goalProgress, goalEnd)
 {
   if (goalProgress == undefined)
     return 0;
   else if (goalProgress >= goalEnd)
-    return scale;
+    return startPoint + width;
   else
-    return scale * (goalProgress/goalEnd);
+    return startPoint + ((goalProgress/goalEnd) * width);
 }
 
-export function getBarCap(start, end, goalProgress, goalEnd)
+export function getHRIcon(heartZone)
 {
-  return start + ((goalProgress/goalEnd) * end);
+  if (heartZone === "fat-burn")
+    return "img_hr_fatburn.png";
+  else if (heartZone === "cardio" || heartZone === "peak")
+    return "img_hr_peak.png";
+  else
+    return "img_hr_resting.png";
 }
 
 export function getHRZone(heartZone)

@@ -70,18 +70,23 @@
   y: 248;
 }
 #stepsBar {
-  x1: -3;
-  y1: 16;
-  x2: 93;
+  x1: 0; /*was 2. y too*/
+  y1: 8;
+  x2: 90;
   y2: -254;
   fill: fb-green;
   stroke-width: 31;
-}/*
+}
+#distHold {
+  x: 284;
+  y: 248;
+}
+/*
 #stepsCap {
   x: -14;
-  y: -8;
-  height: 11;
-  width: 36;
+  y: -5;
+  height: 16;
+  width: 35;
 }*/
 #stepsIcon {
   x: 1;
@@ -140,8 +145,8 @@
   y: 248;
 }
 #distBar {
-  x1: -3;
-  y1: 16;
+  x1: 1;
+  y1: 8;
   x2: 88;
   y2: -240;
   fill: fb-purple;
@@ -183,7 +188,7 @@
 }
 
 #heartRate {
-  x: 78;
+  x: 82;
   y: 244;
   fill: white;
   font-size: 20;
@@ -191,8 +196,15 @@
   text-length: 4;
   text-anchor: end;
 }
+#heartIcon {
+  x: 82;
+  y: 226;
+  width: 22;
+  height: 22;
+  fill: white;
+}
 #heartZone {
-  x: 102;
+  x: 106;
   y: 244;
   fill: white;
   font-size: 20;

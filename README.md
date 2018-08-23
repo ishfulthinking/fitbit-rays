@@ -16,8 +16,8 @@ Rays is a clock face for the Fitbit Ionic. I created it because I wanted to try 
 * None, I just started! But I plan to optimize the bar growth formula since it's a little messy and off-kilter right now.
 
 ### Screenshots
-##### Goals In Progress
+##### Example 1
 ![Keep it up!](https://github.com/ishfulthinking/fitbit-rays/blob/master/Rays-screenshots/Rays-screenshot1.png)  
 
-##### Goals Reached
+##### Example 2
 ![You did it!](https://github.com/ishfulthinking/fitbit-rays/blob/master/Rays-screenshots/Rays-screenshot2.png)  
