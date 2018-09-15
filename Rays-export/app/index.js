@@ -22,11 +22,12 @@ const heartZone = document.getElementById("heartZone");
 const activityBar = document.getElementById("activityBar");
 const activityText = document.getElementById("activityText");
 const activityIcon = document.getElementById("activityIcon");
+const activityCap = document.getElementById("activityCap");
 
 const stepsBar = document.getElementById("stepsBar");
 const stepsText = document.getElementById("stepsText");
 const stepsIcon = document.getElementById("stepsIcon");
-//const stepsCap = document.getElementById("stepsCap");
+const stepsCap = document.getElementById("stepsCap");
 
 const calBar = document.getElementById("calBar");
 const calText = document.getElementById("calText");
@@ -36,6 +37,7 @@ const calCap = document.getElementById("calCap");
 const distBar = document.getElementById("distBar");
 const distText = document.getElementById("distText");
 const distIcon = document.getElementById("distIcon");
+const distCap = document.getElementById("distCap");
 
 const barSlope = -2.78;
 const longBarWidth = 94;
@@ -44,8 +46,7 @@ const shortBarWidth = 80;
 // Update the clock every minute
 clock.granularity = "minutes";
 
-clock.ontick = (evt) =>
-{ 
+clock.ontick = (evt) => { 
   const todayDate = evt.date;
   dayText.text = util.seizeTheDay(todayDate);
   dateText.text = todayDate.getDate() + ' ' + util.seizeTheMonth(todayDate);
@@ -65,25 +66,31 @@ clock.ontick = (evt) =>
 }
 
 // Set the final x/y for each goal bar based on goal progress.
-function updateGoalBars()
-{
-  // I know magic numbers are bad BUT the 4's and 6's are just offsets for the y-intercept on each of the rays. Sorry :-)
+function updateGoalBars() {
+  // I know magic numbers are bad BUT there are quite a few here just for adjustment of the bars and caps. Sorry!
   activityBar.x2 = -util.getGoalBar(activityBar.x1, shortBarWidth, today.local.activeMinutes, goals.activeMinutes);
   activityBar.y2 = activityBar.x2 * barSlope - 4;
+  activityCap.x = activityBar.x2 - 19;
+  activityCap.y = activityCap.x * barSlope - 61;
   
   stepsBar.x2 = util.getGoalBar(stepsBar.x1, longBarWidth, today.local.steps, goals.steps);
   stepsBar.y2 = stepsBar.x2 * barSlope + 6;
+  stepsCap.x = stepsBar.x2 - 19;
+  stepsCap.y = stepsCap.x * barSlope - 55;
   
   calBar.x2 = -util.getGoalBar(calBar.x1, longBarWidth, today.local.calories, goals.calories);
   calBar.y2 = calBar.x2 * barSlope - 4;
+  calCap.x = calBar.x2 - 20;
+  calCap.y = calCap.x * barSlope - 65;
   
   distBar.x2 = util.getGoalBar(distBar.x1, shortBarWidth, today.local.distance, goals.distance);
   distBar.y2 = distBar.x2 * barSlope + 6;
+  distCap.x = distBar.x2 - 19;
+  distCap.y = distCap.x * barSlope - 55;
 }
 
 // Update the stat numbers for each goal and "fill" the icon if the goal is met.
-function updateGoalInfo()
-{
+function updateGoalInfo() {
   activityText.text = today.local.activeMinutes || 0;
   if (today.local.activeMinutes >= goals.activeMinutes)
     activityIcon.href = "img_activityFill.png";
@@ -102,20 +109,18 @@ function updateGoalInfo()
 }
 
 // Update battery line length and percentage.
-function updateBattery()
-{
+function updateBattery() {
   batteryPercentage.text = (Math.floor(battery.chargeLevel) || "--") + "%";
   // The battery line stretches from the start point (184) and shrinks along a scale.
   batteryLine.x2 = 184 + ((battery.chargeLevel / 100) * 108);
 }
 
-function updateHeart()
-{
+// This runs constantly so that heart rate text and icon are accurate and current.
+function updateHeart() {
   let hrm = new HeartRateSensor();
   hrm.start();
 
-  hrm.onreading = function()
-  {
+  hrm.onreading = function() {
     heartRate.text = hrm.heartRate || "--";
     heartIcon.href = util.getHRIcon(user.heartRateZone(hrm.heartRate));
     heartZone.text = "HR: " + util.getHRZone(user.heartRateZone(hrm.heartRate));

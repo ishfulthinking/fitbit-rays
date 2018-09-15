@@ -12,23 +12,27 @@
   <text id="heartZone"/>
   
   <svg id="activityHold">
+    <image id="activityCap" href="img_activityCap.png" load="sync"/>
     <line id="activityBar"/>
     <image id="activityIcon" href="img_activityLine.png" load="sync"/>
     <text id="activityText"/>
   </svg>
   
   <svg id="stepsHold">
+    <image id="stepsCap" href="img_stepsCap.png" load="sync"/>
     <line id="stepsBar"/>
     <image id="stepsIcon" href="img_stepsLine.png" load="sync"/>
     <text id="stepsText"/>
   </svg>
   
   <svg id="calHold">
+    <image id="calCap" href="img_calorieCap.png" load="sync"/>
     <line id="calBar"/>
     <image id="calIcon" href="img_calorieLine.png" load="sync"/>
     <text id="calText"/>
   </svg>
   <svg id="distHold">
+    <image id="distCap" href="img_distanceCap.png" load="sync"/>
     <line id="distBar"/>
     <image id="distIcon" href="img_distanceLine.png" load="sync"/>
     <text id="distText"/>
