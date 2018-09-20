@@ -1,6 +1,9 @@
 # Rays
 Rays is a clock face for the Fitbit Ionic. I created it because I wanted a decorative clock face that was still functional and data-generous (i.e. shows goals, battery, and heart rate at a glance).
 
+If you're on mobile, you can use the below link to open the Fitbit app directly to this watch face:
+https://gam.fitbit.com/gallery/clock/80531c9a-7da0-4e71-85f7-9b0aeb1a9cd2
+
 ## Features
 * Time display is configurable (12 hour or 24 hour)
 * Shows current day of the week and date
