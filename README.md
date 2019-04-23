@@ -6,11 +6,11 @@ It's also open source (because I know how much that can help beginners)!
 ###### https://gam.fitbit.com/gallery/clock/80531c9a-7da0-4e71-85f7-9b0aeb1a9cd2
 
 ### Features
-📅 Day of the week and date
-🔋 Battery level percentage and bar
-❤ Heart rate with corresponding zone info (resting, fat burn, or cardio/peak)
-🥇 Fitness goal progress visuals (distance goal is scaled based on user's selected units)
-⛅ Weather and stairs climbed stats are visible by tapping the screen to toggle which info is displayed!
+📅 Day of the week and date  
+🔋 Battery level percentage and bar  
+❤ Heart rate with corresponding zone info (resting, fat burn, or cardio/peak)  
+🥇 Fitness goal progress visuals (distance goal is scaled based on user's selected units)  
+⛅ Weather and stairs climbed stats are visible by tapping the screen to toggle which info is displayed!  
 
 ### Screenshots
 | Example 1 | Example 2 |
