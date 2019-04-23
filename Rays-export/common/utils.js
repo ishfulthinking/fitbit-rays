@@ -124,3 +124,38 @@ export function getHRZone(heartZone)
   
   return "--";
 }
+
+export function fahrenheitToCelsius(temperature)
+{
+  return Math.round((temperature - 32.0) * (5.0/9.0));
+}
+
+export function getWeather(weatherid)
+{
+  if (weatherid < 300)
+    return "Thunderstorm";
+  if (weatherid < 600)
+    return "Raining";
+  if (weatherid < 700)
+    return "Snowing";
+  if (weatherid < 800)
+    return "Misty";
+  if (weatherid == 800)
+    return "Clear Skies";
+  if (weatherid < 900)
+    return "Cloudy";
+  
+  return "--";
+}
+
+export function getWeatherIcon(weathertype)
+{
+  if (weathertype == "Thunderstorm" || weathertype == "Raining")
+    return "img_rain.png";
+  if (weathertype == "Snowing")
+    return "img_snow.png";
+  if (weathertype == "Misty" || weathertype == "Cloudy")
+    return "img_cloud.png";
+  
+  return "img_sun.png";
+}

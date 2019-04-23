@@ -6,13 +6,18 @@
   text-anchor: middle;
 }
 
+#display {
+  viewport-fill: black;
+  opacity: 0;
+}
+
 #dayText {
   font-size: 24;
   font-family: Colfax-Medium;
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 36%;
+  y: 34%;
   fill: white;
   opacity: 0.6;
 }
@@ -22,7 +27,7 @@
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 58%;
+  y: 56%;
   fill: white;
 }
 #dateText {
@@ -31,7 +36,7 @@
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 70%;
+  y: 68%;
   fill: white;
   opacity: 0.6;
 }
@@ -127,7 +132,7 @@
   x: -14;
   y: 50;
   height: 14;
-  width: 40;
+  width: 39;
 }
 #calIcon {
   x: -24;
@@ -147,6 +152,11 @@
 }
 
 #distHold {
+  x: 284;
+  y: 248;
+}
+
+#distbarhold {
   x: 284;
   y: 248;
 }
@@ -175,10 +185,10 @@
   text-anchor: middle;
 }
 #distCap {
-  x: -14;
+  x: -13;
   y: 5;
   height: 14;
-  width: 40;
+  width: 38;
 }
 
 #batteryPercentage {
@@ -200,7 +210,7 @@
 }
 
 #heartRate {
-  x: 82;
+  x: 85;
   y: 244;
   fill: white;
   font-size: 20;
@@ -209,14 +219,14 @@
   text-anchor: end;
 }
 #heartIcon {
-  x: 82;
+  x: 85;
   y: 226;
   width: 22;
   height: 22;
   fill: white;
 }
 #heartZone {
-  x: 106;
+  x: 109;
   y: 244;
   fill: white;
   font-size: 20;

@@ -7,9 +7,24 @@
   
   <text id="batteryPercentage"/>
   <line id="batteryLine"/>
-  <text id="heartRate"/>
-  <image id="heartIcon" href="img_hr_resting.png" load="sync"/>
-  <text id="heartZone"/>
+  
+  <defs>
+    <symbol id="textsym">
+      <g id="textgroup">
+        <text id="heartRate"/>
+        <image id="heartIcon" href="img_hr_resting.png" load="sync"/>
+        <text id="heartZone"/>
+        
+        <animate attributeName="opacity" begin="enable"
+            from="1" to="0" dur="0.25" final="keep" />
+        <animate attributeName="opacity" begin="disable"
+            from="0" to="1" dur="0.25" final="keep" />
+      </g>
+    </symbol>
+  </defs>
+  <svg id="textInfoHolder">
+    <use id="textuse" href="#textsym" width="100%" height="100%" />
+  </svg>
   
   <svg id="activityHold">
     <image id="activityCap" href="img_activityCap.png" load="sync"/>
@@ -31,10 +46,29 @@
     <image id="calIcon" href="img_calorieLine.png" load="sync"/>
     <text id="calText"/>
   </svg>
-  <svg id="distHold">
-    <image id="distCap" href="img_distanceCap.png" load="sync"/>
-    <line id="distBar"/>
+  
+  <defs>
+    <symbol id="distsym">
+      <g id="distgroup">
+        <image id="distCap" href="img_distanceCap.png" load="sync"/>
+        <line id="distBar"/>
+        
     <image id="distIcon" href="img_distanceLine.png" load="sync"/>
     <text id="distText"/>
+        
+        <animate attributeName="opacity" begin="enable"
+            from="1" to="0" dur="0.25" final="keep" />
+        <animate attributeName="opacity" begin="disable"
+            from="0" to="1" dur="0.25" final="keep" />
+      </g>
+    </symbol>
+  </defs>
+  
+  <svg id="distbarhold">
+    <use id="distuse" href="#distsym" width="100%" height="100%" />
   </svg>
+  
+  
+  
+  <rect id="display" width="100%" height="100%" pointer-events="visible"/>
 </svg>
