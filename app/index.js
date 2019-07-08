@@ -48,7 +48,7 @@ let distgroup = distuse.getElementById("distgroup");
 
 let currTemp = "--";
 let currWeather = "";
-let currWeatherIcon = "img_sun.png";
+let currWeatherIcon = "sun.png";
 
 const barSlope = -2.78;
 const longBarWidth = 94;
@@ -57,38 +57,68 @@ const shortBarWidth = 80;
 let baseInfo = true;
 let changingInfo = false;
 
+let loaded = false;
+
 // Update the clock every minute
 clock.granularity = "minutes";
+clock.ontick = (evt) => {
+  let todayDate = evt.date;
+  let minutes = todayDate.getMinutes();
+  let hours = todayDate.getHours();
+  
+  updateTime(minutes, hours);
+  
+  updateMinuteEvents();
+  // Save on runtime by updating hourly events only if it's the start of an hour.
+  if (minutes == 0) {
+    updateHourEvents(hours, todayDate);
+  }
+  
+  // If it's our first time loading the clock face, fill in hourly and daily info.
+  if (!loaded) {
+    updateHourEvents(hours);
+    updateDay(todayDate);
+  }
+}
 
-clock.ontick = (evt) => { 
-  const todayDate = evt.date;
-  dayText.text = util.seizeTheDay(todayDate);
-  dateText.text = todayDate.getDate() + ' ' + util.seizeTheMonth(todayDate);
+function updateTime(hours, minutes) {
+  hours = (preferences.clockDisplay == "12h") ? (todayDate.getHours() % 12 || 12) : util.zeroPad(hours);
+  minutes = util.zeroPad(minutes);
   
-  const hours = todayDate.getHours();
-  const mins = util.zeroPad(todayDate.getMinutes());
-  
-  // The ternary operator makes me happy
-  hours = (preferences.clockDisplay == "12h") ? (hours % 12 || 12) : util.zeroPad(hours);
-  
-  timeText.text = `${hours}:${mins}`;
-  
+  timeText.text = `${hours}:${minutes}`;
+}
+
+function updateMinuteEvents(minutes) {
+  // We also update our goal progress and heart rate every minute.
   updateGoalBars();
   updateGoalInfo();
-  updateBattery();
   updateBottomText();
+}
+
+function updateHourEvents(hours, todayDate) {
+  updateBattery();
+  
+  // If it's the start of a new day, update the date.
+  if (hours == 0) {
+    updateDay(todayDate);
+  }
+}
+
+function updateDay(todayDate) {
+  dayText.text = util.seizeTheDay(todayDate);
+  dateText.text = todayDate.getDate() + ' ' + util.seizeTheMonth(todayDate);
 }
 
 display.onclick = () => {
   // First check that we're not in the middle of editing the info.
   if (!changingInfo)
   {
+    // Then, update everything by flipping to the opposite setting.
     changingInfo = true;
     baseInfo = !baseInfo;
     textuse.animate("enable");
     distuse.animate("enable");
-    updateGoalBars();
-    updateGoalInfo();
+    updatePurpleBar();
     updateBottomText();
     textuse.animate("disable");
     distuse.animate("disable");
@@ -96,10 +126,10 @@ display.onclick = () => {
   }
 }
 
-// Set the final x/y for each goal bar based on goal progress.
+// Draw the lines for each of the goal bars.
 function updateGoalBars() {
-  // The bars aren't actually all solid -- they're mostly drawn lines, with images for the caps. So we have to do
-  // some math to make sure they line up correctly and are the right size.
+  // The bars aren't actually completely solid -- they're tiled lines, with images for the flat tops.
+  // So we have to do some math to make sure they line up correctly and are the right size.
   
   // I know magic numbers are bad but there are quite a few here just for adjustment of the bars and caps. Sorry!
   activityBar.x2 = -util.getGoalBar(activityBar.x1, shortBarWidth, today.local.activeMinutes, goals.activeMinutes);
@@ -117,6 +147,33 @@ function updateGoalBars() {
   calCap.x = calBar.x2 - 20;
   calCap.y = calCap.x * barSlope - 65;
   
+  // We'll update the purple bar separately, since tapping the screen will also update it.
+  updatePurpleBar();
+}
+
+// Update the stat numbers for each goal and "fill" the icon if the goal is met.
+function updateGoalInfo() {
+  activityText.text = today.local.activeMinutes || 0;
+  if (today.local.activeMinutes >= goals.activeMinutes)
+    activityIcon.href = "icons/goals/activityFill.png";
+  else
+    activityIcon.href = "icons/goals/activityLine.png";
+  
+  stepsText.text = today.local.steps || 0;
+  if (today.local.steps >= goals.steps)
+    stepsIcon.href = "icons/goals/stepsFill.png";
+  else
+    stepsIcon.href = "icons/goals/stepsLine.png";
+  
+  calText.text = today.local.calories || 0;
+  if (today.local.calories >= goals.calories)
+    calIcon.href = "icons/goals/caloriesFill.png";
+  else
+    calIcon.href = "icons/goals/caloriesLine.png";
+}
+
+function updatePurpleBar() {
+  // Redraw the purple goal bar.
   if (baseInfo) {
     distBar.x2 = util.getGoalBar(distBar.x1, shortBarWidth, today.local.distance, goals.distance);
   } else {
@@ -125,34 +182,20 @@ function updateGoalBars() {
   distBar.y2 = distBar.x2 * barSlope + 6;
   distCap.x = distBar.x2 - 18;
   distCap.y = distCap.x * barSlope - 50;
-}
-
-// Update the stat numbers for each goal and "fill" the icon if the goal is met.
-function updateGoalInfo() {
-  activityText.text = today.local.activeMinutes || 0;
-  if (today.local.activeMinutes >= goals.activeMinutes)
-    activityIcon.href = "img_activityFill.png";
   
-  stepsText.text = today.local.steps || 0;
-  if (today.local.steps >= goals.steps)
-    stepsIcon.href = "img_stepsFill.png";
-  
-  calText.text = today.local.calories || 0;
-  if (today.local.calories >= goals.calories)
-    calIcon.href = "img_calorieFill.png";
-  
+  // Also update the stat text for each goal.
   if (baseInfo) {
     distText.text = util.calculateDistance(today.local.distance, units.distance);
     if (today.local.distance >= goals.distance)
-      distIcon.href = "img_distanceFill.png";  
+      distIcon.href = "icons/goals/distanceFill.png";  
     else
-      distIcon.href = "img_distanceLine.png";
+      distIcon.href = "icons/goals/distanceLine.png";
   } else {
     distText.text = today.local.elevationGain || 0;
     if (today.local.elevationGain >= goals.elevationGain)
-      distIcon.href = "img_floorFill.png";  
+      distIcon.href = "icons/goals/floorsFill.png";  
     else
-      distIcon.href = "img_floorLine.png";
+      distIcon.href = "icons/goals/floorsLine.png";
   }
 }
 
@@ -161,6 +204,8 @@ function updateBattery() {
   batteryPercentage.text = (Math.floor(battery.chargeLevel) || "--") + "%";
   // The battery line stretches from the start point (184) and shrinks along a scale.
   batteryLine.x2 = 184 + ((battery.chargeLevel / 100) * 108);
+  // We also want to color the battery line once it gets low.
+  batteryLine.style.fill = util.getBatteryColor(battery.chargeLevel);
 }
 
 // This runs constantly so that heart rate text and icon are accurate and current.
@@ -170,7 +215,7 @@ function updateBottomText() {
   if (baseInfo) {
     hrm.start();
     heartRate.text = "--";
-    heartIcon.href = "img_hr_resting.png";
+    heartIcon.href = "icons/heart/resting.png";
     heartZone.text = "Sensing..."
     hrm.onreading = function() {
       heartRate.text = hrm.heartRate || "--";

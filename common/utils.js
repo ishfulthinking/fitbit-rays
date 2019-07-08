@@ -101,14 +101,24 @@ export function getGoalBar(startPoint, width, goalProgress, goalEnd)
     return startPoint + ((goalProgress/goalEnd) * width);
 }
 
+export function getBatteryColor(percentage)
+{
+  if (percentage <= 25)
+    return "fb-peach";
+  if (percentage <= 40)
+    return "fb-mint";
+  
+  return "white";
+}
+
 export function getHRIcon(heartZone)
 {
   if (heartZone === "fat-burn")
-    return "img_hr_fatburn.png";
+    return "icons/heart/fatburn.png";
   else if (heartZone === "cardio" || heartZone === "peak")
-    return "img_hr_peak.png";
+    return "icons/heart/peak.png";
   else
-    return "img_hr_resting.png";
+    return "icons/heart/resting.png";
 }
 
 export function getHRZone(heartZone)
@@ -151,11 +161,11 @@ export function getWeather(weatherid)
 export function getWeatherIcon(weathertype)
 {
   if (weathertype == "Thunderstorm" || weathertype == "Raining")
-    return "img_rain.png";
+    return "icons/weather/rain.png";
   if (weathertype == "Snowing")
-    return "img_snow.png";
+    return "icons/weather/snow.png";
   if (weathertype == "Misty" || weathertype == "Cloudy")
-    return "img_cloud.png";
+    return "icons/weather/cloud.png";
   
-  return "img_sun.png";
+  return "icons/weather/sun.png";
 }

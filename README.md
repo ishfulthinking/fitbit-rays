@@ -1,4 +1,5 @@
 # Rays
+##### Version 3.1
 Rays is a clock face for the Fitbit Ionic that shows stats as vibrant angled lines and provides useful data at a glance.
 It's also open source (because I know how much that can help beginners)!
 
@@ -7,7 +8,7 @@ It's also open source (because I know how much that can help beginners)!
 
 ### Features
 📅 Day of the week and date  
-🔋 Battery level percentage and bar  
+🔋 Battery level percentage and bar (also changes color when battery low)  
 ❤ Heart rate with corresponding zone info (resting, fat burn, or cardio/peak)  
 🥇 Fitness goal progress visuals (distance goal is scaled based on user's selected units)  
 ⛅ Weather and stairs climbed stats are visible by tapping the screen to toggle which info is displayed!  

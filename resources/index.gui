@@ -1,5 +1,5 @@
 <svg class="background">
-  <image href="img_background.png" load="sync"/>
+  <image href="background.png" load="sync"/>
   
   <text id="dayText"/>
   <text id="timeText"/>
@@ -12,7 +12,7 @@
     <symbol id="textsym">
       <g id="textgroup">
         <text id="heartRate"/>
-        <image id="heartIcon" href="img_hr_resting.png" load="sync"/>
+        <image id="heartIcon" href="icons/heart/resting.png" load="sync"/>
         <text id="heartZone"/>
         
         <animate attributeName="opacity" begin="enable"
@@ -27,33 +27,33 @@
   </svg>
   
   <svg id="activityHold">
-    <image id="activityCap" href="img_activityCap.png" load="sync"/>
+    <image id="activityCap" href="caps/activityCap.png" load="sync"/>
     <line id="activityBar"/>
-    <image id="activityIcon" href="img_activityLine.png" load="sync"/>
+    <image id="activityIcon" href="icons/goals/activityLine.png" load="sync"/>
     <text id="activityText"/>
   </svg>
   
   <svg id="stepsHold">
-    <image id="stepsCap" href="img_stepsCap.png" load="sync"/>
+    <image id="stepsCap" href="caps/stepsCap.png" load="sync"/>
     <line id="stepsBar"/>
-    <image id="stepsIcon" href="img_stepsLine.png" load="sync"/>
+    <image id="stepsIcon" href="icons/goals/stepsLine.png" load="sync"/>
     <text id="stepsText"/>
   </svg>
   
   <svg id="calHold">
-    <image id="calCap" href="img_calorieCap.png" load="sync"/>
+    <image id="calCap" href="caps/caloriesCap.png" load="sync"/>
     <line id="calBar"/>
-    <image id="calIcon" href="img_calorieLine.png" load="sync"/>
+    <image id="calIcon" href="icons/goals/caloriesLine.png" load="sync"/>
     <text id="calText"/>
   </svg>
   
   <defs>
     <symbol id="distsym">
       <g id="distgroup">
-        <image id="distCap" href="img_distanceCap.png" load="sync"/>
+        <image id="distCap" href="caps/distanceCap.png" load="sync"/>
         <line id="distBar"/>
         
-    <image id="distIcon" href="img_distanceLine.png" load="sync"/>
+    <image id="distIcon" href="icons/goals/distanceLine.png" load="sync"/>
     <text id="distText"/>
         
         <animate attributeName="opacity" begin="enable"
