@@ -48,7 +48,7 @@ let distgroup = distuse.getElementById("distgroup");
 
 let currTemp = "--";
 let currWeather = "";
-let currWeatherIcon = "sun.png";
+let currWeatherIcon = "icons/weather/sun.png";
 
 const barSlope = -2.78;
 const longBarWidth = 94;
@@ -76,13 +76,13 @@ clock.ontick = (evt) => {
   
   // If it's our first time loading the clock face, fill in hourly and daily info.
   if (!loaded) {
-    updateHourEvents(hours);
+    updateHourEvents(hours, todayDate);
     updateDay(todayDate);
   }
 }
 
 function updateTime(hours, minutes) {
-  hours = (preferences.clockDisplay == "12h") ? (todayDate.getHours() % 12 || 12) : util.zeroPad(hours);
+  hours = (preferences.clockDisplay == "12h") ? (hours % 12 || 12) : util.zeroPad(hours);
   minutes = util.zeroPad(minutes);
   
   timeText.text = `${hours}:${minutes}`;
