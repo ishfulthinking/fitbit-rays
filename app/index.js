@@ -80,7 +80,6 @@ function updateTime(hours, minutes) {
 }
 
 function updateGoals() {
-  // We also update our goal progress and heart rate every minute.
   updateGoalBars();
   updateGoalInfo();
 }
