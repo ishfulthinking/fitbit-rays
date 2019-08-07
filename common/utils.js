@@ -103,10 +103,10 @@ export function getGoalBar(startPoint, width, goalProgress, goalEnd)
 
 export function getBatteryColor(percentage)
 {
-  if (percentage <= 25)
-    return "fb-peach";
-  if (percentage <= 40)
-    return "fb-mint";
+  if (percentage <= 16)
+    return "tomato";
+  if (percentage <= 32)
+    return "orange";
   
   return "white";
 }

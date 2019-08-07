@@ -65,20 +65,11 @@ clock.ontick = (evt) => {
   let todayDate = evt.date;
   let minutes = todayDate.getMinutes();
   let hours = todayDate.getHours();
-  
-  updateTime(minutes, hours);
-  
-  updateMinuteEvents();
-  // Save on runtime by updating hourly events only if it's the start of an hour.
-  if (minutes == 0) {
-    updateHourEvents(hours, todayDate);
-  }
-  
-  // If it's our first time loading the clock face, fill in hourly and daily info.
-  if (!loaded) {
-    updateHourEvents(hours, todayDate);
-    updateDay(todayDate);
-  }
+
+  updateDay(todayDate);
+  updateTime(hours, minutes);
+  updateGoals();
+  updateStats();
 }
 
 function updateTime(hours, minutes) {
@@ -88,20 +79,15 @@ function updateTime(hours, minutes) {
   timeText.text = `${hours}:${minutes}`;
 }
 
-function updateMinuteEvents(minutes) {
+function updateGoals() {
   // We also update our goal progress and heart rate every minute.
   updateGoalBars();
   updateGoalInfo();
-  updateBottomText();
 }
 
-function updateHourEvents(hours, todayDate) {
+function updateStats() {
   updateBattery();
-  
-  // If it's the start of a new day, update the date.
-  if (hours == 0) {
-    updateDay(todayDate);
-  }
+  updateBottomText();
 }
 
 function updateDay(todayDate) {
